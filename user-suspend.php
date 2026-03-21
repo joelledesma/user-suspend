@@ -10,7 +10,7 @@
  * @wordpress-plugin
  * Plugin Name:       User Suspend
  * Description:       Suspend user accounts with timed or permanent bans, ban reasons, email notifications, audit logging, and bulk actions.
- * Version:           2.0.5
+ * Version:           2.1.0
  * Author:            Joel Ledesma
  * Author URI:        https://joelledesma.com
  * License:           GPL-2.0-or-later
@@ -26,7 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'USER_SUSPEND_VERSION', '2.0.5' );
+define( 'USER_SUSPEND_VERSION', '2.1.0' );
 define( 'USER_SUSPEND_PLUGIN_FILE', __FILE__ );
 define( 'USER_SUSPEND_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'USER_SUSPEND_PLUGIN_URL', plugin_dir_url( __FILE__ ) );

@@ -1,0 +1,272 @@
+/**
+ * User Suspend — Admin Styles
+ *
+ * @package User_Suspend
+ * @since   2.1.0
+ */
+
+/* ==========================================================================
+   Status Badges
+   ========================================================================== */
+
+.us-badge {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	padding: 3px 10px;
+	border-radius: 12px;
+	font-size: 11px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.4px;
+	line-height: 1.6;
+	white-space: nowrap;
+}
+
+.us-badge--suspended {
+	background-color: #fce8e8;
+	color: #8b0000;
+	border: 1px solid #f5c6c6;
+}
+
+.us-badge--active,
+.us-badge--unsuspended {
+	background-color: #edfaed;
+	color: #145214;
+	border: 1px solid #b3e6b3;
+}
+
+.us-badge--permanent {
+	background-color: #fff3cd;
+	color: #856404;
+	border: 1px solid #ffd966;
+}
+
+/* ==========================================================================
+   Stats Bar
+   ========================================================================== */
+
+.us-stats-bar {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 16px;
+	margin: 16px 0 24px;
+}
+
+.us-stat-card {
+	background: #fff;
+	border: 1px solid #dcdcde;
+	border-radius: 4px;
+	padding: 16px 24px;
+	min-width: 160px;
+	flex: 1;
+	max-width: 220px;
+}
+
+.us-stat-card__number {
+	font-size: 28px;
+	font-weight: 700;
+	color: #1d2327;
+	line-height: 1.2;
+	display: block;
+}
+
+.us-stat-card__label {
+	font-size: 12px;
+	color: #646970;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	margin-top: 4px;
+	display: block;
+}
+
+.us-stat-card--alert .us-stat-card__number {
+	color: #d63638;
+}
+
+.us-stat-card--ok .us-stat-card__number {
+	color: #00a32a;
+}
+
+/* ==========================================================================
+   Suspended Users Table
+   ========================================================================== */
+
+.us-users-table {
+	margin-top: 8px;
+}
+
+.us-users-table .us-user-cell {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.us-users-table .us-user-cell img {
+	border-radius: 50%;
+	flex-shrink: 0;
+}
+
+.us-users-table .us-user-name {
+	font-weight: 600;
+	color: #1d2327;
+	text-decoration: none;
+}
+
+.us-users-table .us-user-name:hover {
+	color: #2271b1;
+	text-decoration: underline;
+}
+
+.us-users-table .us-user-email {
+	font-size: 12px;
+	color: #646970;
+	margin-top: 1px;
+}
+
+.us-reason-cell {
+	max-width: 220px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	color: #50575e;
+	font-size: 13px;
+}
+
+.us-reason-cell:hover {
+	white-space: normal;
+	overflow: visible;
+}
+
+.us-empty-state {
+	background: #fff;
+	border: 1px solid #dcdcde;
+	border-radius: 4px;
+	padding: 40px 24px;
+	text-align: center;
+	color: #646970;
+	margin-top: 8px;
+}
+
+.us-empty-state p {
+	font-size: 14px;
+	margin: 0;
+}
+
+/* ==========================================================================
+   Audit Log
+   ========================================================================== */
+
+.us-section-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin: 24px 0 8px;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+.us-section-header h2 {
+	margin: 0;
+}
+
+.us-log-table td {
+	font-size: 13px;
+	vertical-align: middle;
+}
+
+/* ==========================================================================
+   Profile Suspension Panel
+   ========================================================================== */
+
+.us-profile-card {
+	background: #fff;
+	border: 1px solid #dcdcde;
+	border-radius: 4px;
+	padding: 20px 24px;
+	margin-bottom: 20px;
+	max-width: 700px;
+}
+
+.us-profile-card__header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 16px;
+	padding-bottom: 12px;
+	border-bottom: 1px solid #f0f0f1;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+.us-profile-card__title {
+	font-size: 14px;
+	font-weight: 600;
+	color: #1d2327;
+	margin: 0;
+}
+
+.us-profile-card .form-table {
+	margin: 0;
+}
+
+.us-profile-card .form-table th {
+	padding-left: 0;
+	width: 160px;
+}
+
+.us-profile-card .form-table td {
+	padding-right: 0;
+}
+
+.us-suspend-meta {
+	background: #f6f7f7;
+	border-left: 3px solid #d63638;
+	padding: 10px 14px;
+	border-radius: 0 4px 4px 0;
+	margin-top: 12px;
+	font-size: 13px;
+	color: #50575e;
+}
+
+.us-suspend-meta strong {
+	color: #1d2327;
+}
+
+/* ==========================================================================
+   Dividers & Layout
+   ========================================================================== */
+
+.us-divider {
+	border: none;
+	border-top: 1px solid #dcdcde;
+	margin: 28px 0;
+}
+
+.us-page-title {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+@media screen and (max-width: 782px) {
+	.us-stats-bar {
+		flex-direction: column;
+	}
+
+	.us-stat-card {
+		max-width: 100%;
+	}
+
+	.us-profile-card {
+		padding: 16px;
+	}
+
+	.us-profile-card .form-table th {
+		width: auto;
+	}
+}
