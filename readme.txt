@@ -3,7 +3,7 @@ Contributors: joelledesmajr
 Tags: suspend, users, moderation, security, login
 Requires at least: 5.8
 Tested up to: 6.9
-Stable tag: 2.0.3
+Stable tag: 2.0.5
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
