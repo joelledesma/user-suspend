@@ -440,6 +440,7 @@ class User_Suspend_Admin {
 
 		if (
 			isset( $_POST['us_clear_log'] ) &&
+			current_user_can( 'edit_users' ) &&
 			check_admin_referer( 'us_clear_log_action', 'us_clear_log_nonce' )
 		) {
 			User_Suspend_Logger::clear_log();
@@ -615,7 +616,21 @@ class User_Suspend_Admin {
 									<?php echo 'suspended' === $entry['action'] ? esc_html__( 'Suspended', 'user-suspend' ) : esc_html__( 'Unsuspended', 'user-suspend' ); ?>
 								</span>
 							</td>
-							<td><?php echo $affected ? esc_html( $affected->display_name . ' (#' . $entry['user_id'] . ')' ) : esc_html( '#' . $entry['user_id'] ); ?></td>
+							<td>
+							<?php if ( $affected ) : ?>
+								<?php echo esc_html( $affected->display_name . ' (#' . $entry['user_id'] . ')' ); ?>
+							<?php else : ?>
+								<?php
+								echo esc_html(
+									sprintf(
+										/* translators: %d: user ID of a deleted user */
+										__( '#%d (User Deleted)', 'user-suspend' ),
+										$entry['user_id']
+									)
+								);
+								?>
+							<?php endif; ?>
+						</td>
 							<td><?php echo esc_html( $entry['reason'] ? $entry['reason'] : '—' ); ?></td>
 							<td><?php echo $performer ? esc_html( $performer->display_name ) : esc_html__( 'System', 'user-suspend' ); ?></td>
 						</tr>

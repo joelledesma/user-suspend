@@ -117,6 +117,12 @@ class User_Suspend_Core {
 			$suspended_by = get_current_user_id();
 		}
 
+		// Only allow users with edit_user capability to suspend others.
+		// The $suspended_by check allows the cron job (ID 0) to bypass this.
+		if ( $suspended_by > 0 && ! user_can( $suspended_by, 'edit_user', $user_id ) ) {
+			return false;
+		}
+
 		update_user_meta( $user_id, self::META_SUSPENDED, 1 );
 		update_user_meta( $user_id, self::META_REASON, sanitize_textarea_field( $reason ) );
 		update_user_meta( $user_id, self::META_EXPIRY, absint( $expiry ) );
@@ -157,6 +163,12 @@ class User_Suspend_Core {
 
 		if ( 0 === $unsuspended_by ) {
 			$unsuspended_by = get_current_user_id();
+		}
+
+		// Only allow users with edit_user capability to unsuspend.
+		// ID 0 is the cron job for timed expiry — always allowed.
+		if ( $unsuspended_by > 0 && ! user_can( $unsuspended_by, 'edit_user', $user_id ) ) {
+			return false;
 		}
 
 		delete_user_meta( $user_id, self::META_SUSPENDED );
