@@ -334,26 +334,20 @@ class User_Suspend_Admin {
 			return $redirect_to;
 		}
 
-			// WordPress core already validates the bulk action request on users.php.
-			// Avoid hard-failing here because some environments can submit the request
-			// in a way that makes an additional nonce check return false and show a
-			// misleading "link expired" screen even though the action is legitimate.
-			//
-			// We still perform a soft verification when the nonce is present so direct
-			// requests without a valid nonce are ignored instead of processed.
-		if ( isset( $_REQUEST['_wpnonce'] ) ) {
-			$bulk_nonce = sanitize_text_field( wp_unslash( $_REQUEST['_wpnonce'] ) );
-			if ( ! wp_verify_nonce( $bulk_nonce, 'bulk-users' ) ) {
-				return $redirect_to;
-			}
+		if (
+			! isset( $_REQUEST['_wpnonce'] ) ||
+			! wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['_wpnonce'] ) ), 'bulk-users' )
+		) {
+			return $redirect_to;
 		}
 
+		$user_ids  = array_map( 'absint', (array) $user_ids );
+		$user_ids  = array_filter( $user_ids );
 		$processed = 0;
 		$current   = get_current_user_id();
 
 		foreach ( $user_ids as $uid ) {
-			$uid = absint( $uid );
-			$u   = get_userdata( $uid );
+			$u = get_userdata( $uid );
 
 			if ( ! $u || in_array( 'administrator', (array) $u->roles, true ) ) {
 				continue;
@@ -543,7 +537,7 @@ class User_Suspend_Admin {
 						<tr>
 							<td>
 								<div class="us-user-cell">
-									<?php echo $avatar; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+									<?php echo wp_kses_post( $avatar ); ?>
 									<div>
 										<a href="<?php echo esc_url( $edit_url ); ?>" class="us-user-name"><?php echo esc_html( $user->display_name ); ?></a>
 										<div class="us-user-email"><?php echo esc_html( $user->user_email ); ?></div>

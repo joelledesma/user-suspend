@@ -377,15 +377,17 @@ class User_Suspend_Core {
 		$site_name = get_bloginfo( 'name' );
 
 		/* translators: %s: site name */
-		$subject = sprintf( __( '[%s] Your account has been suspended', 'user-suspend' ), $site_name );
+		$subject = sprintf( __( '[%s] Your account has been suspended', 'user-suspend' ), wp_strip_all_tags( $site_name ) );
+
+		$clean_reason = wp_strip_all_tags( $reason );
 
 		$body = sprintf(
 			/* translators: 1: user display name, 2: site name, 3: optional reason line */
 			__( "Hello %1\$s,\n\nYour account on %2\$s has been suspended.\n\n%3\$sIf you believe this is an error, please contact our support team.\n\nRegards,\n%2\$s", 'user-suspend' ),
-			esc_html( $user->display_name ),
-			$site_name,
+			wp_strip_all_tags( $user->display_name ),
+			wp_strip_all_tags( $site_name ),
 			/* translators: %s: suspension reason */
-			! empty( $reason ) ? sprintf( __( 'Reason: %s', 'user-suspend' ), $reason ) . "\n\n" : ''
+			! empty( $clean_reason ) ? sprintf( __( 'Reason: %s', 'user-suspend' ), $clean_reason ) . "\n\n" : ''
 		);
 
 		wp_mail( $user->user_email, $subject, $body );

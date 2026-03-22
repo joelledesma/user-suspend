@@ -3,7 +3,7 @@ Contributors: joelledesmajr
 Tags: suspend, users, moderation, security, login
 Requires at least: 5.8
 Tested up to: 6.9
-Stable tag: 2.1.0
+Stable tag: 2.1.1
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -61,6 +61,18 @@ Deactivating the plugin does not remove any data. Uninstalling (deleting) the pl
 
 == Changelog ==
 
+= 2.1.1 =
+* Security hardening: hard-fail on missing or invalid bulk action nonce.
+* Security hardening: sanitize bulk user ID array with absint before processing.
+* Security hardening: strip all HTML tags from email notification fields.
+* Security hardening: escape avatar output with wp_kses_post.
+* Removed internal meta key from migration summary stored in options.
+
+= 2.1.0 =
+* Redesigned admin UI with stats bar, avatar thumbnails, and card-style layout.
+* Added dedicated CSS file for all admin styles.
+* Responsive layout for mobile admin screens.
+
 = 2.0.3 =
 * Renamed plugin to User Suspend.
 * Updated Tested up to: 6.9.
@@ -78,6 +90,12 @@ Deactivating the plugin does not remove any data. Uninstalling (deleting) the pl
 * Added automatic migration of v1.0 ban data on activation.
 
 == Upgrade Notice ==
+
+= 2.1.1 =
+Security hardening release. Recommended for all users.
+
+= 2.1.0 =
+Admin UI redesign. No database changes — safe to upgrade.
 
 = 2.0.3 =
 Rename to User Suspend. No database changes — safe to upgrade from 2.0.x.

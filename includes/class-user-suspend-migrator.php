@@ -114,7 +114,6 @@ class User_Suspend_Migrator {
 			array(
 				'migrated_at'    => current_time( 'mysql' ),
 				'users_migrated' => $migrated,
-				'legacy_key'     => $legacy_key,
 			),
 			false
 		);
